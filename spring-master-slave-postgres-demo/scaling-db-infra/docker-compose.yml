@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Master (Principal)
+  postgres-master:
+    image: postgres:15
+    container_name: postgres-master
+    environment:
+      POSTGRES_DB: scalingdb
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+      POSTGRES_REPLICATION_USER: replicator
+      POSTGRES_REPLICATION_PASSWORD: repl_password123
+    volumes:
+      - postgres_master_data:/var/lib/postgresql/data
+      - ./master/master-init.sql:/docker-entrypoint-initdb.d/master-init.sql
+      - ./master/postgresql-master.conf:/etc/postgresql/postgresql.conf
+      - ./master/pg_hba.conf:/etc/postgresql/pg_hba.conf
+    ports:
+      - "5432:5432"
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf -c hba_file=/etc/postgresql/pg_hba.conf
+    networks:
+      - scaling-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d scalingdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # PostgreSQL Slave (Read Replica)
+  postgres-slave:
+    build:
+      context: .
+      dockerfile: slave.Dockerfile
+    container_name: postgres-slave
+    environment:
+      POSTGRES_DB: scalingdb  # Adicionado para consistência
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+      PGUSER: admin
+      POSTGRES_REPLICATION_USER: replicator  # Adicionado para replicação
+      POSTGRES_REPLICATION_PASSWORD: repl_password123  # Adicionado para replicação
+    volumes:
+      - postgres_slave_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    depends_on:
+      postgres-master:
+        condition: service_healthy
+    command: [ "bash", "-c", "/replica-init.sh && docker-entrypoint.sh postgres -c config_file=/etc/postgresql/postgresql.conf" ]
+    networks:
+      - scaling-network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U admin -d scalingdb" ]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
+  # Aplicação Spring Boot
+  spring-app:
+    build:
+      context: .. # Sobe um nível para a pasta raiz
+      dockerfile: ./scaling-db-infra/Dockerfile # Caminho do Dockerfile dentro do novo contexto
+    container_name: spring-master-slave-postgres-demo-app
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      DB_MASTER_URL: jdbc:postgresql://postgres-master:5432/scalingdb
+      DB_SLAVE_URL: jdbc:postgresql://postgres-slave:5432/scalingdb
+      DB_USERNAME: admin
+      DB_PASSWORD: password123
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres-master:
+        condition: service_healthy
+      postgres-slave:
+        condition: service_healthy
+    networks:
+      - scaling-network
+
+volumes:
+  postgres_master_data:
+  postgres_slave_data:
+
+networks:
+  scaling-network:
+    driver: bridge
