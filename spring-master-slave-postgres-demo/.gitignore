@@ -1,0 +1,77 @@
+# Compilados Java
+/target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Arquivos de log
+*.log
+
+# Configurações do Maven
+.mvn/
+!/.mvn/wrapper/maven-wrapper.jar
+
+# Arquivos do Eclipse
+*.classpath
+*.project
+*.settings/
+
+# Arquivos do IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+out/
+
+# Arquivos do VS Code
+.vscode/
+
+# Arquivos temporários do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de teste
+/test-output/
+
+# Arquivos de build
+/build/
+
+# Arquivos de ambiente
+.env
+
+# Arquivos de backup
+*~
+*.swp
+*.swo
+
+# Arquivos de configuração do JetBrains Rider
+.idea/
+*.sln.iml
+
+# Arquivos de cache do JetBrains
+/.idea/
+/.idea/*
+
+# Arquivos de configuração do Mac
+.AppleDouble
+.LSOverride
+
+# Arquivos de configuração do Windows
+Desktop.ini
+$RECYCLE.BIN/
+
+# Arquivos de configuração do Linux
+*~
+
+# Arquivos de configuração do JetBrains
+*.ipr
+*.iws
+
+# Arquivos de configuração do NetBeans
+/nbproject/private/
+/build/
+/dist/
+/nbbuild/
+/nbdist/
+/.nb-gradle/
+
