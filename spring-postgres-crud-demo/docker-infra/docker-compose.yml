@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: crud-demo-postgres
+    environment:
+      POSTGRES_DB: crud_demo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - crud-demo-network
+
+  app:
+    build:
+      context: ..
+      dockerfile: docker-infra/Dockerfile
+    container_name: crud-demo-app
+    depends_on:
+      - postgres
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8080:8080"
+    networks:
+      - crud-demo-network
+
+volumes:
+  postgres_data:
+
+networks:
+  crud-demo-network:
+    driver: bridge

@@ -8,6 +8,21 @@ Este repositório contém implementações de referência e demos técnicas que 
 
 ## 📋 Índice de Projetos
 
+### [Spring PostgreSQL CRUD Demo](./spring-postgres-crud-demo/)
+
+**Tecnologias:** Java, Spring Boot, PostgreSQL, Docker
+
+Demonstração completa de uma aplicação CRUD (Create, Read, Update, Delete) utilizando Spring Boot, PostgreSQL e Docker. O projeto implementa operações básicas de gerenciamento de usuários e produtos através de uma API REST, servindo como base para arquiteturas mais complexas.
+
+**Características:**
+- API REST completa para usuários e produtos
+- Operações CRUD com Spring Data JPA
+- Validação de dados com Bean Validation
+- Configuração Docker automatizada
+- Endpoints de monitoramento com Actuator
+
+**Artigo relacionado:** [Fundamentos Spring Boot com PostgreSQL e Docker](https://nosbielc.com/posts/cod-14072025)
+
 ### [Spring Master-Slave PostgreSQL Demo](./spring-master-slave-postgres-demo/)
 
 **Tecnologias:** Java, Spring Boot, PostgreSQL, Docker
