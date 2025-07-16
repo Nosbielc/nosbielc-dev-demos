@@ -1,54 +1,57 @@
-# Spring Boot Master-Slave com PostgreSQL e Docker
+# Nosbielc Dev Demos
 
-Este projeto demonstra como implementar uma arquitetura master-slave com PostgreSQL utilizando Spring Boot e Docker Compose, baseada no artigo publicado em [nosbielc.com](https://nosbielc.com/posts/15072025).
+Coleção de projetos de demonstração e exemplos práticos para desenvolvimento de software, explorando diferentes tecnologias, padrões arquiteturais e soluções de engenharia.
 
-## Resumo
+## 🚀 Sobre
 
-A solução apresentada permite escalar aplicações Java/Spring Boot utilizando replicação de banco de dados PostgreSQL em modo master-slave. O objetivo é separar operações de leitura e escrita, melhorando a performance e a disponibilidade do sistema.
+Este repositório contém implementações de referência e demos técnicas que complementam os artigos publicados no blog [nosbielc.com](https://nosbielc.com). Cada projeto demonstra conceitos específicos com código funcional e documentação prática.
 
-O projeto utiliza:
-- **Spring Boot** para a aplicação principal
-- **Docker Compose** para orquestração dos containers
-- **PostgreSQL** configurado em modo master-slave
+## 📋 Índice de Projetos
 
-## Estrutura do Projeto
+### [Spring Master-Slave PostgreSQL Demo](./spring-master-slave-postgres-demo/)
 
-- `src/main/java` — Código-fonte da aplicação Spring Boot
-- `src/main/resources` — Arquivos de configuração (application.yml, application-docker.yml, etc.)
-- `scaling-db-infra/` — Infraestrutura Docker e scripts de configuração do banco
-    - `docker-compose.yml` — Orquestração dos containers
-    - `master/` — Configurações e scripts do banco master
-    - `slave/` — Configurações e scripts do banco slave
+**Tecnologias:** Java, Spring Boot, PostgreSQL, Docker
 
-## Como funciona
+Demonstração completa de uma arquitetura master-slave com PostgreSQL utilizando Spring Boot e Docker Compose. O projeto implementa separação de operações de leitura e escrita para melhorar performance e escalabilidade.
 
-- O container master do PostgreSQL recebe todas as operações de escrita.
-- O container slave replica os dados do master e atende operações de leitura.
-- A aplicação Spring Boot está configurada para direcionar queries de escrita para o master e de leitura para o slave, utilizando repositórios separados.
+**Características:**
+- Configuração master-slave automatizada com Docker
+- Repositórios separados para leitura e escrita
+- Replicação assíncrona entre bancos
+- Testes de carga incluídos
 
-## Como executar
+**Artigo relacionado:** [Como escalar aplicações Java/Spring Boot com PostgreSQL Master-Slave e Docker](https://nosbielc.com/posts/15072025)
 
-1. Clone o repositório
-2. Suba a infraestrutura com Docker Compose:
-   ```sh
-   cd scaling-db-infra
-   docker-compose up -d
-   ```
-3. Execute a aplicação Spring Boot:
-   ```sh
-   ./mvnw spring-boot:run
-   ```
+## 🛠️ Tecnologias Utilizadas
 
-## Testando
+- **Backend:** Java, Spring Boot, Maven
+- **Banco de Dados:** PostgreSQL
+- **Containerização:** Docker, Docker Compose
+- **Ferramentas:** Shell Scripts, SQL
 
-- Utilize os endpoints REST para testar operações de leitura e escrita.
-- Verifique os logs dos containers para acompanhar a replicação.
+## 📖 Como Usar
 
-## Referência
+Cada projeto possui sua própria documentação detalhada. Navegue até o diretório específico e siga as instruções no README correspondente.
 
-Baseado no artigo: [Como escalar aplicações Java/Spring Boot com PostgreSQL Master-Slave e Docker](https://nosbielc.com/posts/15072025)
+## 🔗 Links Úteis
+
+- **Blog:** [nosbielc.com](https://nosbielc.com)
+- **GitHub:** [@nosbielc](https://github.com/nosbielc)
+- **LinkedIn:** [Cleibson Silva](https://linkedin.com/in/cleibson-silva)
+
+## 📝 Contribuições
+
+Contribuições são bem-vindas! Sinta-se à vontade para:
+- Relatar bugs ou problemas
+- Sugerir melhorias
+- Propor novos exemplos
+- Enviar pull requests
+
+## 📄 Licença
+
+.
 
 ---
 
-Autor: Cleibson Silva (nosbielc.com)
+**Autor:** Cleibson Silva | [nosbielc.com](https://nosbielc.com)
 
