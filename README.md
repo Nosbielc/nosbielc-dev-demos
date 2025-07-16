@@ -37,7 +37,7 @@ Cada projeto possui sua própria documentação detalhada. Navegue até o diret�
 
 - **Blog:** [nosbielc.com](https://nosbielc.com)
 - **GitHub:** [@nosbielc](https://github.com/nosbielc)
-- **LinkedIn:** [Cleibson Silva](https://linkedin.com/in/cleibson-silva)
+- **LinkedIn:** [Cleibson Gomes](https://linkedin.com/in/cleibson)
 
 ## 📝 Contribuições
 
@@ -53,5 +53,5 @@ Contribuições são bem-vindas! Sinta-se à vontade para:
 
 ---
 
-**Autor:** Cleibson Silva | [nosbielc.com](https://nosbielc.com)
+**Autor:** Cleibson Gomes | [nosbielc.com](https://nosbielc.com)
 
