@@ -46,7 +46,7 @@ O projeto utiliza:
 
 ## Referência
 
-Baseado no artigo: [Como escalar aplicações Java/Spring Boot com PostgreSQL Master-Slave e Docker](https://nosbielc.com/posts/cod_15072025)
+Baseado no artigo: [Como escalar aplicações Java/Spring Boot com PostgreSQL Master-Slave e Docker](https://nosbielc.com/posts/cod-15072025)
 
 ---
 

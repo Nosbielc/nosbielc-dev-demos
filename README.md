@@ -20,7 +20,7 @@ Demonstração completa de uma arquitetura master-slave com PostgreSQL utilizand
 - Replicação assíncrona entre bancos
 - Testes de carga incluídos
 
-**Artigo relacionado:** [Como escalar aplicações Java/Spring Boot com PostgreSQL Master-Slave e Docker](https://nosbielc.com/posts/cod_15072025)
+**Artigo relacionado:** [Como escalar aplicações Java/Spring Boot com PostgreSQL Master-Slave e Docker](https://nosbielc.com/posts/cod-15072025)
 
 ## 🛠️ Tecnologias Utilizadas
 
